@@ -8,6 +8,7 @@ function UserContext({ children }) {
   const [user, setUser] = useState(null); // store login info, role, etc.
   const [userDetail, setUserDetail] = useState(null);
   const [userEmail,setUserEmail]=useState("")
+  const [collapsed, setCollapsed] = useState(false);
 
   // const handleCurrentUser = async () => {
   //   try {
@@ -24,7 +25,7 @@ function UserContext({ children }) {
   //   handleCurrentUser()
   // },[])
   return (
-    <UserDataContext.Provider value={{ user, setUser, serverUrl,userEmail,setUserEmail,userDetail,setUserDetail }}>
+    <UserDataContext.Provider value={{ user, setUser, serverUrl,userEmail,setUserEmail,userDetail,setUserDetail,collapsed, setCollapsed }}>
       {children}
     </UserDataContext.Provider>
   );

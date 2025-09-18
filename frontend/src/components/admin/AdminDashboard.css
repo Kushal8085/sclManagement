@@ -1,0 +1,11 @@
+.page-wrapper {
+  transition: all 0.3s ease;
+}
+
+.content-normal {
+  margin-left: 250px; /* when sidebar expanded */
+}
+
+.content-expanded {
+  margin-left: 60px; /* when sidebar collapsed */
+}

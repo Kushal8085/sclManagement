@@ -1,0 +1,14 @@
+/* smooth fade & slide for dropdown */
+.showOption {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  display: block; /* required so we can control visibility */
+  visibility: hidden;
+}
+
+.showOption.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}

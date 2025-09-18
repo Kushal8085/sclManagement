@@ -1,28 +1,30 @@
 import React,{useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { UserDataContext } from '../context/UserContext.jsx'
+import './Navbar.css'
 
 
 const Navbar = () => {
-  const { user, setUser, serverUrl } = useContext(UserDataContext)
+  const { user, setUser, serverUrl, collapsed, setCollapsed } = useContext(UserDataContext)
   const [active,setActive]=useState('dashboard')
   console.log(user)
+  console.log(collapsed)
   return (
-    <div className="sidebar" id="sidebar">
+    <div  className={`sidebar bg-white vh-100 border-end transition ${collapsed ? "sidebar-collapsed" : "sidebar-expanded"}`} id="sidebar">
           <div className="sidebar-inner slimscroll">
             <div id="sidebar-menu" className="sidebar-menu">
               <ul>
                 <li className="menu-title">
-                  <span>Main Menu</span>
+                  <span className={collapsed ? "d-none" : "d-inline"}>Main Menu</span>
                 </li>
                 <li className={`submenu ${active === 'dashboard' ? 'active' : ''}`} onClick={() => setActive('dashboard')}>
-                  <Link to={`/${user.role}/dashboard`}><i className="feather-grid" /> <span> Dashboard</span> <span className="menu-arrow" /></Link>
+                  <Link to={`/${user.role}/dashboard`}><i className="feather-grid" /> <span className={collapsed ? "d-none" : "d-inline"}> Dashboard</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                 </li>
                 <li className={`submenu ${active === 'students' ? 'active' : ''}`} onClick={() => setActive('students')}>
-                  <Link to={`/${user.role}/students`}><i className="fas fa-graduation-cap" /> <span> Students</span> <span className="menu-arrow" /></Link>
+                  <Link to={`/${user.role}/students`}><i className="fas fa-graduation-cap" /> <span className={collapsed ? "d-none" : "d-inline"}> Students</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                 </li>
                 <li className="submenu">
-                  <Link to={`/${user.role}/teachers`}><i className="fas fa-chalkboard-teacher" /> <span> Teachers</span> <span className="menu-arrow" /></Link>
+                  <Link to={`/${user.role}/teachers`}><i className="fas fa-chalkboard-teacher" /> <span className={collapsed ? "d-none" : "d-inline"}> Teachers</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                   <ul>
                     <li><Link to="teachers.html">Teacher List</Link></li>
                     <li><Link to="teacher-details.html">Teacher View</Link></li>
@@ -31,7 +33,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <Link to="#"><i className="fas fa-building" /> <span> Departments</span> <span className="menu-arrow" /></Link>
+                  <Link to="#"><i className="fas fa-building" /> <span className={collapsed ? "d-none" : "d-inline"}> Departments</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                   <ul>
                     <li><Link to="departments.html">Department List</Link></li>
                     <li><Link to="add-department.html">Department Add</Link></li>
@@ -39,7 +41,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <Link to="#"><i className="fas fa-book-reader" /> <span> Subjects</span> <span className="menu-arrow" /></Link>
+                  <Link to="#"><i className="fas fa-book-reader" /> <span className={collapsed ? "d-none" : "d-inline"}> Subjects</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                   <ul>
                     <li><Link to="subjects.html">Subject List</Link></li>
                     <li><Link to="add-subject.html">Subject Add</Link></li>
@@ -47,7 +49,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <Link to="#"><i className="fas fa-clipboard" /> <span> Invoices</span> <span className="menu-arrow" /></Link>
+                  <Link to="#"><i className="fas fa-clipboard" /> <span className={collapsed ? "d-none" : "d-inline"}> Invoices</span> <span className={collapsed ? "" : "menu-arrow"} /></Link>
                   <ul>
                     <li><Link to="invoices.html">Invoices List</Link></li>
                     <li><Link to="invoice-grid.html">Invoices Grid</Link></li>
@@ -58,10 +60,10 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="menu-title">
-                  <span>Management</span>
+                  <span className={collapsed ? "d-none" : "d-inline"}>Management</span>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fas fa-file-invoice-dollar" /> <span> Accounts</span> <span className="menu-arrow" /></a>
+                  <a href="#"><i className="fas fa-file-invoice-dollar" /> <span className={collapsed ? "d-none" : "d-inline"}> Accounts</span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="fees-collections.html">Fees Collection</a></li>
                     <li><a href="expenses.html">Expenses</a></li>
@@ -72,25 +74,25 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li>
-                  <a href="holiday.html"><i className="fas fa-holly-berry" /> <span>Holiday</span></a>
+                  <a href="holiday.html"><i className="fas fa-holly-berry" /> <span className={collapsed ? "d-none" : "d-inline"}>Holiday</span></a>
                 </li>
                 <li>
-                  <a href="fees.html"><i className="fas fa-comment-dollar" /> <span>Fees</span></a>
+                  <a href="fees.html"><i className="fas fa-comment-dollar" /> <span className={collapsed ? "d-none" : "d-inline"}>Fees</span></a>
                 </li>
                 <li>
-                  <a href="exam.html"><i className="fas fa-clipboard-list" /> <span>Exam list</span></a>
+                  <a href="exam.html"><i className="fas fa-clipboard-list" /> <span className={collapsed ? "d-none" : "d-inline"}>Exam list</span></a>
                 </li>
                 <li>
-                  <a href="event.html"><i className="fas fa-calendar-day" /> <span>Events</span></a>
+                  <a href="event.html"><i className="fas fa-calendar-day" /> <span className={collapsed ? "d-none" : "d-inline"}>Events</span></a>
                 </li>
                 <li>
-                  <a href="time-table.html"><i className="fas fa-table" /> <span>Time Table</span></a>
+                  <a href="time-table.html"><i className="fas fa-table" /> <span className={collapsed ? "d-none" : "d-inline"}>Time Table</span></a>
                 </li>
                 <li>
-                  <a href="library.html"><i className="fas fa-book" /> <span>Library</span></a>
+                  <a href="library.html"><i className="fas fa-book" /> <span className={collapsed ? "d-none" : "d-inline"}>Library</span></a>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fa fa-newspaper" /> <span> Blogs</span>
+                  <a href="#"><i className="fa fa-newspaper" /> <span className={collapsed ? "d-none" : "d-inline"}> Blogs</span>
                     <span className="menu-arrow" />
                   </a>
                   <ul>
@@ -100,13 +102,13 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li>
-                  <a href="settings.html"><i className="fas fa-cog" /> <span>Settings</span></a>
+                  <a href="settings.html"><i className="fas fa-cog" /> <span className={collapsed ? "d-none" : "d-inline"}>Settings</span></a>
                 </li>
                 <li className="menu-title">
-                  <span>Pages</span>
+                  <span className={collapsed ? "d-none" : "d-inline"}>Pages</span>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fas fa-shield-alt" /> <span> Authentication </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i className="fas fa-shield-alt" /> <span className={collapsed ? "d-none" : "d-inline"}> Authentication </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="register.html">Register</a></li>
@@ -115,25 +117,25 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li>
-                  <a href="blank-page.html"><i className="fas fa-file" /> <span>Blank Page</span></a>
+                  <a href="blank-page.html"><i className="fas fa-file" /> <span className={collapsed ? "d-none" : "d-inline"}>Blank Page</span></a>
                 </li>
                 <li className="menu-title">
-                  <span>Others</span>
+                  <span className={collapsed ? "d-none" : "d-inline"}>Others</span>
                 </li>
                 <li>
-                  <a href="sports.html"><i className="fas fa-baseball-ball" /> <span>Sports</span></a>
+                  <a href="sports.html"><i className="fas fa-baseball-ball" /> <span className={collapsed ? "d-none" : "d-inline"}>Sports</span></a>
                 </li>
                 <li>
-                  <a href="hostel.html"><i className="fas fa-hotel" /> <span>Hostel</span></a>
+                  <a href="hostel.html"><i className="fas fa-hotel" /> <span className={collapsed ? "d-none" : "d-inline"}>Hostel</span></a>
                 </li>
                 <li>
-                  <a href="transport.html"><i className="fas fa-bus" /> <span>Transport</span></a>
+                  <a href="transport.html"><i className="fas fa-bus" /> <span className={collapsed ? "d-none" : "d-inline"}>Transport</span></a>
                 </li>
                 <li className="menu-title">
-                  <span>UI Interface</span>
+                  <span className={collapsed ? "d-none" : "d-inline"}>UI Interface</span>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fab fa-get-pocket" /> <span>Base UI </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i className="fab fa-get-pocket" /> <span className={collapsed ? "d-none" : "d-inline"}>Base UI </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="alerts.html">Alerts</a></li>
                     <li><a href="accordions.html">Accordions</a></li>
@@ -166,7 +168,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i data-feather="box" /> <span>Elements </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i data-feather="box" /> <span className={collapsed ? "d-none" : "d-inline"}>Elements </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><Link to="ribbon.html">Ribbon</Link></li>
                     <li><Link to="clipboard.html">Clipboard</Link></li>
@@ -183,7 +185,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i data-feather="bar-chart-2" /> <span> Charts </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i data-feather="bar-chart-2" /> <span className={collapsed ? "d-none" : "d-inline"}> Charts </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="chart-apex.html">Apex Charts</a></li>
                     <li><a href="chart-js.html">Chart Js</a></li>
@@ -194,7 +196,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i data-feather="award" /> <span> Icons </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i data-feather="award" /> <span className={collapsed ? "d-none" : "d-inline"}> Icons </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
                     <li><a href="icon-feather.html">Feather Icons</a></li>
@@ -209,7 +211,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fas fa-columns" /> <span> Forms </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i className="fas fa-columns" /> <span className={collapsed ? "d-none" : "d-inline"}> Forms </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
                     <li><a href="form-input-groups.html">Input Groups </a></li>
@@ -220,14 +222,14 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="#"><i className="fas fa-table" /> <span> Tables </span> <span className="menu-arrow" /></a>
+                  <a href="#"><i className="fas fa-table" /> <span className={collapsed ? "d-none" : "d-inline"}> Tables </span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li><a href="tables-basic.html">Basic Tables </a></li>
                     <li><a href="data-tables.html">Data Table </a></li>
                   </ul>
                 </li>
                 <li className="submenu">
-                  <a href="javascript:void(0);"><i className="fas fa-code" /> <span>Multi Level</span> <span className="menu-arrow" /></a>
+                  <a href="javascript:void(0);"><i className="fas fa-code" /> <span className={collapsed ? "d-none" : "d-inline"}>Multi Level</span> <span className={collapsed ? "" : "menu-arrow"} /></a>
                   <ul>
                     <li className="submenu">
                       <a href="javascript:void(0);"> <span>Level 1</span> <span className="menu-arrow" /></a>

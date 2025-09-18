@@ -6,6 +6,7 @@ import AdminDashboard from './components/admin/AdminDashboard'
 import TeacherDashboard from './components/teacher/TeacherDashboard'
 import StudentDashboard from './components/student/StudentDashboard'
 import StudentsList from './components/student/StudentsList'
+import StudentAdd from './components/student/StudentAdd.jsx'
 import StudentInvoice from './components/admin/StudentInvoice'
 import TeacherSalary from './components/admin/TeacherSalary'
 import StudentViewInvoice from './components/admin/StudentViewInvoice'
@@ -24,6 +25,8 @@ import LoginByPassword from './components/auth/LoginByPassword.jsx'
 import LoginWithOtp from './components/auth/LoginWithOtp.jsx'
 import CreatePassword from './components/auth/CreatePassword.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import TeacherList from './components/teacher/TeacherList.jsx'
+import TeacherAdd from './components/teacher/TeacherAdd.jsx'
 
 
 const App = () => {
@@ -41,9 +44,12 @@ const App = () => {
       <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
       <Route path="/student/dashboard" element={<StudentDashboard />} />
       <Route path="/director/students" element={<StudentsList />} />
+      <Route path="/director/student/add" element={<StudentAdd />} />
       <Route path="/director/teacher/invoice" element={<TeacherSalary />} />
       <Route path="/director/student/invoice" element={<StudentInvoice />} />
       <Route path="/director/student/invoice/view" element={<StudentViewInvoice />} />
+      <Route path="/director/teachers" element={<TeacherList />} />
+      <Route path="/director/teachers/add" element={<TeacherAdd />} />
       <Route path="/hostel" element={<Hostel />} />
       <Route path="/library" element={<Library />} />
       <Route path="/hostel/addRoom" element={<AddRoom />} />
